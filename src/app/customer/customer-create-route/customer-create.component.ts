@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CustomerService } from '../customer.service';
-import { generateBankAccountNumber } from 'src/helpers';
+import { generateBankAccountNumber, getKeyByValue } from 'src/helpers';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-customer-create',
@@ -20,7 +26,11 @@ export class CustomerCreateComponent {
       gender: ['Male', [Validators.required]],
       address: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
+      email: [
+        '',
+        [Validators.required, Validators.email],
+        [this.checkIfExist.bind(this)],
+      ],
       depositAmount: [100, [Validators.required, Validators.min(100)]],
       accountType: ['Checking', [Validators.required]],
     });
@@ -47,5 +57,18 @@ export class CustomerCreateComponent {
 
   getControl(name: string) {
     return this.customerForm.get(name);
+  }
+
+  checkIfExist(
+    control: AbstractControl
+  ): Observable<{ exist: boolean } | null> {
+    return this.customerService.getCustomerByQuery(control.value).pipe(
+      map((customers) => {
+        return customers.length > 0 &&
+          customers.find((customer) => getKeyByValue(customer, control.value))
+          ? { exist: true }
+          : null;
+      })
+    );
   }
 }

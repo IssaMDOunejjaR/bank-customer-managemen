@@ -70,6 +70,8 @@
           ? 'Email is required'
           : getControl('email')?.hasError('email')
           ? 'Invalid email'
+          : getControl('email')?.hasError('exist')
+          ? 'This email already exist'
           : null
       "
     ></app-input>

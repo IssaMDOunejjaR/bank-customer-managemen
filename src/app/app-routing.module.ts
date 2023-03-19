@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DahsboardComponent } from './dahsboard/dahsboard.component';
+import { DahsboardComponent } from './dahsboard-route/dahsboard.component';
 import { CustomerComponent } from './customer/customer.component';
-import { CustomerCreateComponent } from './customer/customer-create/customer-create.component';
-import { CustomerEditComponent } from './customer/customer-edit/customer-edit.component';
+import { CustomerCreateComponent } from './customer/customer-create-route/customer-create.component';
+import { CustomerEditComponent } from './customer/customer-edit-route/customer-edit.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
