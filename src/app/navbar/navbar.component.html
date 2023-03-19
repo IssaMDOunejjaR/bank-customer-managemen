@@ -1,0 +1,40 @@
+<nav
+  class="p-3 flex flex-col h-full text-white"
+  [ngClass]="{ 'w-[200px]': isExpanded }"
+>
+  <ul class="flex flex-col gap-2 mt-36">
+    <app-navbar-link
+      title="Dashboard"
+      imgUrl="https://www.svgrepo.com/show/507640/dashboard.svg"
+      [isExpanded]="isExpanded"
+      routerLink="/"
+    >
+    </app-navbar-link>
+    <app-navbar-link
+      title="Customers"
+      imgUrl="https://www.svgrepo.com/show/476495/users.svg"
+      [isExpanded]="isExpanded"
+      routerLink="/customers"
+    >
+    </app-navbar-link>
+    <app-navbar-link
+      title="Add customers"
+      imgUrl="https://www.svgrepo.com/show/505807/user-plus.svg"
+      [isExpanded]="isExpanded"
+      routerLink="/customers/create"
+    >
+    </app-navbar-link>
+  </ul>
+
+  <button
+    class="mt-auto flex justify-center p-2 rounded-md"
+    (click)="toggleExpand()"
+  >
+    <img
+      src="https://www.svgrepo.com/show/458661/expand-left-double.svg"
+      alt="expand"
+      class="w-[25px] h-[25px] transition-transform invert"
+      [ngClass]="{ 'rotate-180': !isExpanded }"
+    />
+  </button>
+</nav>

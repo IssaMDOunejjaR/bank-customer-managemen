@@ -1,0 +1,15 @@
+<li>
+  <a
+    [routerLink]="routerLink"
+    routerLinkActive="bg-white text-black [&>img]:invert-0"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="group flex items-center gap-2 p-3 text-sm h-[35px] transition-colors rounded-md hover:bg-white hover:text-black"
+  >
+    <img
+      src="{{ imgUrl }}"
+      alt="{{ title.toLowerCase() }}"
+      class="w-[22px] h-[22px] invert group-hover:invert-0"
+    />
+    <span class="" [ngClass]="{ hidden: !isExpanded }">{{ title }}</span>
+  </a>
+</li>

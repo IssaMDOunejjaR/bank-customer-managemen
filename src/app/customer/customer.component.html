@@ -1,0 +1,93 @@
+<main>
+  <h1 class="text-3xl font-bold py-2">Customers</h1>
+
+  <div class="flex flex-col my-4 gap-4 md:flex-row">
+    <input
+      type="text"
+      placeholder="Search"
+      class="flex-1 border-b border-gray-500 py-2 px-4 outline-none"
+      (input)="onQuery($event)"
+    />
+    <a
+      routerLink="create"
+      class="bg-blue-500 font-semibold rounded text-white py-2 px-4"
+      >Add Customer</a
+    >
+  </div>
+
+  <div>
+    <div class="hidden border-b border-gray-300 lg:grid lg:grid-cols-10">
+      <div class="text-sm p-2 font-semibold lg:col-span-2"></div>
+      <div class="text-sm p-2 font-semibold">Account Number</div>
+      <div class="text-sm p-2 font-semibold lg:col-span-2">Address</div>
+      <div class="text-sm p-2 font-semibold">Phone Number</div>
+      <div class="text-sm p-2 font-semibold">Account Type</div>
+      <div class="text-sm p-2 font-semibold">Deposit</div>
+      <div class="text-sm p-2 font-semibold">Created At</div>
+      <div class="text-sm p-2 font-semibold">Updated At</div>
+    </div>
+
+    <div *ngIf="customers.length === 0" class="p-4 text-center">
+      <p class="text-lg italic text-gray-400">There is no customer for now !</p>
+    </div>
+
+    <div
+      *ngFor="let customer of customers"
+      class="group grid items-center lg:grid-cols-10 odd:bg-slate-200 [&:not(:last-child)]:border-b border-gray-300 transition-colors hover:bg-[#172233] hover:text-white"
+    >
+      <div class="p-2 flex flex-col lg:col-span-2">
+        <p class="text-sm font-semibold flex items-end gap-2">
+          {{ customer.firstName + " " + customer.lastName }}
+          <span class="flex text-xs text-gray-400 gap-2"
+            >{{ customer.gender }}
+            <span
+              class="gap-2 justify-center items-center flex transition-opacity opacity-0 group-hover:opacity-100"
+            >
+              <a [routerLink]="'edit/' + customer.id">
+                <img
+                  src="https://www.svgrepo.com/show/507668/edit.svg"
+                  alt="edit"
+                  class="w-[12px] h-[12px] invert"
+                />
+              </a>
+              <button (click)="delete(customer.id)">
+                <img
+                  src="https://www.svgrepo.com/show/502608/delete-2.svg"
+                  alt="delete"
+                  class="w-[12px] h-[12px] invert"
+                /></button></span
+          ></span>
+        </p>
+        <p class="text-xs text-gray-500">{{ customer.email }}</p>
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Account Number:</h2>
+        {{ customer.bankAccountNumber }}
+      </div>
+      <div class="p-2 lg:col-span-2">
+        <h2 class="text-lg font-bold lg:hidden">Address:</h2>
+        {{ customer.address }}
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Phone Number:</h2>
+        {{ customer.phoneNumber }}
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Account Type:</h2>
+        {{ customer.accountType }}
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Deposit:</h2>
+        {{ customer.depositAmount | currency }}
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Created At:</h2>
+        {{ customer.createdAt | date }}
+      </div>
+      <div class="p-2">
+        <h2 class="text-lg font-bold lg:hidden">Updated:</h2>
+        {{ customer.updatedAt | date }}
+      </div>
+    </div>
+  </div>
+</main>

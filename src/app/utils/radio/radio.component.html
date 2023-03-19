@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-1">
+  <h3 class="capitalize font-semibold">{{ name }}:</h3>
+  <div class="flex flex-wrap gap-3" [formGroup]="formGroup">
+    <label *ngFor="let value of values" class="flex gap-2"
+      ><input
+        type="radio"
+        [name]="name"
+        [formControlName]="formValue"
+        [value]="value"
+        checked
+      />
+      {{ value }}</label
+    >
+  </div>
+</div>

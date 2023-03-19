@@ -1,0 +1,105 @@
+<div>
+  <h1 class="text-center text-5xl font-bold my-8">Edit a customer</h1>
+
+  <form
+    [formGroup]="customerForm"
+    (submit)="submit()"
+    class="flex flex-col gap-3 p-2 max-w-[500px] mx-auto"
+  >
+    <div class="flex gap-2">
+      <app-input
+        class="flex-1"
+        name="first name"
+        placeholder="Enter your first name"
+        value="firstName"
+        [error]="
+          getControl('firstName')?.hasError('required') &&
+          getControl('firstName')?.touched
+            ? 'First name is required'
+            : null
+        "
+      ></app-input>
+      <app-input
+        class="flex-1"
+        name="last name"
+        placeholder="Enter your last name"
+        value="lastName"
+        [error]="
+          getControl('lastName')?.hasError('required') &&
+          getControl('lastName')?.touched
+            ? 'Last name is required'
+            : null
+        "
+      ></app-input>
+    </div>
+    <app-radio
+      name="gender"
+      [values]="['Male', 'Female']"
+      formValue="gender"
+    ></app-radio>
+    <app-input
+      name="address"
+      placeholder="Enter your address"
+      value="address"
+      [error]="
+        getControl('address')?.hasError('required') &&
+        getControl('address')?.touched
+          ? 'Address is required'
+          : null
+      "
+    ></app-input>
+    <app-input
+      name="phone number"
+      placeholder="Enter your phone number"
+      value="phoneNumber"
+      [error]="
+        getControl('phoneNumber')?.hasError('required') &&
+        getControl('phoneNumber')?.touched
+          ? 'Phone number is required'
+          : null
+      "
+    ></app-input>
+    <app-input
+      name="email"
+      placeholder="Enter your email"
+      value="email"
+      [error]="
+        !getControl('email')?.touched
+          ? null
+          : getControl('email')?.hasError('required')
+          ? 'Email is required'
+          : getControl('email')?.hasError('email')
+          ? 'Invalid email'
+          : null
+      "
+    ></app-input>
+    <app-input
+      type="number"
+      name="deposit amount"
+      placeholder="Enter the deposit amount"
+      value="depositAmount"
+      [error]="
+        !getControl('depositAmount')?.touched
+          ? null
+          : getControl('depositAmount')?.hasError('required')
+          ? 'Deposit amount is required'
+          : getControl('depositAmount')?.hasError('min')
+          ? 'Deposit amount can\'t be less than 100'
+          : null
+      "
+    ></app-input>
+    <app-radio
+      name="accountType"
+      [values]="['Saving', 'Checking']"
+      formValue="accountType"
+    ></app-radio>
+
+    <button
+      type="submit"
+      class="bg-blue-500 text-white p-2 rounded-md disabled:opacity-50"
+      [disabled]="customerForm.invalid"
+    >
+      Update
+    </button>
+  </form>
+</div>
