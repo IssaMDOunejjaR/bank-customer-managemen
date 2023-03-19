@@ -20,26 +20,26 @@ export class DahsboardComponent implements OnInit {
       this.customers = customers;
 
       this.totalCustomers = customers.length;
-      // this.totalDeposits = customers.reduce(
-      //   (prev, current) => prev + current.depositAmount,
-      //   0
-      // );
+      this.totalDeposits = customers.reduce(
+        (prev, current) => prev + current.depositAmount,
+        0
+      );
 
-      // this.recentlyCreated = customers
-      //   .sort(
-      //     (a, b) =>
-      //       new Date(b.createdAt.toString()).getTime() -
-      //       new Date(a.createdAt.toString()).getTime()
-      //   )
-      //   .slice(0, 5);
+      this.recentlyCreated = customers
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt.toString()).getTime() -
+            new Date(a.createdAt.toString()).getTime()
+        )
+        .slice(0, 5);
 
-      // this.recentlyUpdated = customers
-      //   .sort(
-      //     (a, b) =>
-      //       new Date(b.updatedAt.toString()).getTime() -
-      //       new Date(a.updatedAt.toString()).getTime()
-      //   )
-      //   .slice(0, 5);
+      this.recentlyUpdated = customers
+        .sort(
+          (a, b) =>
+            new Date(b.updatedAt.toString()).getTime() -
+            new Date(a.updatedAt.toString()).getTime()
+        )
+        .slice(0, 5);
     });
   }
 }
